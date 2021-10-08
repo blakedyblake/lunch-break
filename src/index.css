@@ -5,9 +5,59 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1C0B19;
+  font-family: 'Cookie', 'Times New Roman';
+  color: #CDE77F;
+  text-align: center;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+#loginPage{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+.login{
+  background: url('https://th.bing.com/th/id/OIP.pK55wxfM8BKcYZwwSNpc3gHaJQ?w=191&h=239&c=7&r=0&o=5&dpr=1.38&pid=1.7') no-repeat;
+  position:absolute;
+  height:45.5%;
+  width:17.1%;
+  top:15%;
+  left:41%;
+  box-shadow: ivory -1px -1px 2px, black 2px 2px 3px;
+  border-radius: 20% /5%;
+
+
+  
+
+  
+}
+h1.login-title{
+  position: absolute;
+  text-shadow: black 5px 5px 10px;
+  font-weight: lighter;
+  text-align: center;
+  width: 100%;
+
+}
+/* Rectangle 1 */
+.submit-btn{
+  display: block;
+  border-radius: 5%/ 20%;
+  box-shadow:2px 2px 5px black ;
+}
+/* login and sign in ids are for forms */
+#login{
+  margin-top: 10%;
+  margin-left: 20%;
+}
+#sign-in{
+  position: absolute;
+  right:20%;
+  top:20%;
+}
+fieldset{
+  box-shadow: #CDE77F 1px 1px 2px;
 }
