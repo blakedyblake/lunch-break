@@ -1,0 +1,54 @@
+@import 'variables';
+.main-stability{
+    margin-left:15%;
+    margin-right:0;
+    width:50%;
+}
+.main-selector{
+
+    border-width: 3px;
+    
+    margin-top:80px;
+    margin-bottom:200px;
+ 
+    
+    
+}
+.restaurant-holder{
+    margin-left: 8.3%;
+}
+.restaurantIcon:hover{
+    transform: scale(1.2);
+    transition-duration: 2s;
+}
+.restaurantIcon{
+    transform: scale(1);
+    transition-duration: 2s;
+    
+    
+}
+section>h4{
+    text-align: center;
+    width:100%;
+}
+.triangle{
+    width:0px; height:0px;
+    border-style:solid;
+    border-color: transparent $title-color transparent transparent;
+    border-width: 0 100px 100px 100px;
+}
+.triangle:hover{
+    cursor: pointer;
+    border-color: transparent antiquewhite transparent transparent;
+}
+.triangle.right{
+    transform:rotate(45deg);
+    margin-bottom: 10%;
+}
+.triangle.left{
+    transform: rotate(-135deg);
+    margin-top:10%;
+}
+.restaurantIcon:hover{
+    cursor:pointer;
+}

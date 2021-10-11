@@ -4,4 +4,5 @@ const config = {
         rejectUnauthorized:false
     }
 }
+module.exports = config;
 export default config;

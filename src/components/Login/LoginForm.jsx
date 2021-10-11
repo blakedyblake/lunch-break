@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, {useContext, useState} from 'react'
-import { ConfigContext } from '../../App';
+import React, {useState} from 'react'
+
 
 
 const LogIn = ()=>{
@@ -8,7 +8,6 @@ const LogIn = ()=>{
     const [password, setPassword] = useState('');
     const [logError, setLogError] = useState('');
 
-    const context = useContext(ConfigContext)
 
     const handleUserName = (e)=>{
         setUsername(e.target.value);
@@ -25,7 +24,7 @@ const LogIn = ()=>{
             else{
                 //Take us to it
                 setLogError('Success!')
-                context.userId = 
+
                 window.location.href = window.location.href +`main/${res.data[0].id}/${username}`
                 
             }
