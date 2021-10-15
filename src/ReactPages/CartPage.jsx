@@ -1,17 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useContext } from "react/cjs/react.development";
+import BackButton from "../components/BackButton";
 import CartRow from "../components/CartPage/CartRow";
+import { GlobalContext } from "../Context/IdProvider";
 
 const CartPage = ()=>{
-    const {userid ,username} = useParams();
-    const [cartData, setCartData] = useState([])
+    const {username} = useParams();
+    const [cartData, setCartData] = useState(null)
     const [total, setTotal] = useState(0)
-    const [isDeleted, setIsDeleted] = useState(false)
-
+    const [isChanged, setChanged] = useState(false)
+    const context = useContext(GlobalContext)
+    //if(user_id===0) window.location.href = 'http://localhost:3000/'
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/cart/getCart/${userid}`).then(res=>{
+        console.log('useEffect')
+        axios.get(`http://localhost:5000/cart/getCart/${context.user_id}`).then(res=>{
             setCartData(res.data)
             let sum = 0;
             for(let i of res.data){
@@ -19,22 +24,28 @@ const CartPage = ()=>{
             }
             setTotal(sum)
         })
-        setIsDeleted(false);
         
-    },[isDeleted])
+        
+    },[isChanged])
     
-    const reload = ()=>{window.location.reload()}
     const toPayment = ()=>{
-        window.location.href = `http://localhost:3000/pay/${userid}/${username}/${total}`;
+        context.setTotal(total)
+        window.location.href = `http://localhost:3000/#/pay/${context.user_id}/${username}/${total}`;
     }
-    return cartData.length> 0 ?(
+    return cartData ?(
         <>  
-            <button onClick={e=>reload()}>Dummy</button>
-            <h1>Cart Page</h1>
-            {cartData.map((e,k)=>{
-                return <CartRow data={e} fn={setIsDeleted}/>
-            })}
-            <h3>Cart Total: {total}</h3>
+            <div className='left-dark' style={{top:'-30px', zIndex:-4}}></div>
+            <div className='right-dark' style={{top:'-30px'}}></div>
+
+            <BackButton href={`http://localhost:3000/#/menu/${username}/${context.rest_id}/test`} style={{right:'70%'}}/>
+            <h1 style={{marginBottom:'70px'}}>Cart Page</h1>
+            <div className='cartlist'>
+                {cartData.map((e,k)=>{
+                    return <CartRow data={e} fn={setChanged}/>
+                })}
+            </div>
+            
+            <h3>Cart Total: ${total.toFixed(2)}</h3>
             <button onClick={toPayment}>Pay Now</button>
         </>
     ): <div className='loading'>Loading</div>

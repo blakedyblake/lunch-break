@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, {useState} from 'react'
-
+import React, {useContext, useState} from 'react'
+import {GlobalContext} from '../../Context/IdProvider';
 
 
 const LogIn = ()=>{
@@ -8,31 +8,37 @@ const LogIn = ()=>{
     const [password, setPassword] = useState('');
     const [logError, setLogError] = useState('');
 
+    //const {user_id,setUser}  = useContext(GlobalContext)
+    const context = useContext(GlobalContext)
+    //console.log(GlobalContext)
+
 
     const handleUserName = (e)=>{
         setUsername(e.target.value);
         
 
     }
-    const handleSubmit = async()=>{
-
-        axios.get(`http://localhost:5000/login/${username}`).then(res=>{
-            console.log(res.data)
-            const dataPassword = res.data[0].password;
-            if(!dataPassword) setLogError('That username is not found. Sign in')
-            else if(password !== dataPassword) setLogError('Wrong username/password')
-            else{
-                //Take us to it
-                setLogError('Success!')
-
-                window.location.href = window.location.href +`main/${res.data[0].id}/${username}`
-                
-            }
-        }).catch(()=>{
-            console.error('What be goin on?')
-            setLogError('Wrong username/password')
-        } )
+    const handleSubmit = ()=>{
+        console.log(context, 'Context before axios')
+        axios.post(`http://localhost:5000/login/${username}`,{password}).then(  (res)=>{
             
+            // console.log(res.data.id, typeof res.data.id)
+            // console.log(res.status)
+            // console.log(res.status===200, res.status===401)
+            
+            let _200 = (res.status===200)
+            
+            setLogError(_200? 'Success':'Wrong username/password');
+            context.setUserId(res.data.id? res.data.id: null)//FIXME: This doesn't permanently change the state
+            if(_200) window.location.href = window.location.href +`main/${username}`
+
+    }).catch((err)=>{
+        console.error('Whaa',err)
+
+        setLogError('Wrong username/password')
+    } )
+    console.log(context, 'Context after axios')
+    
     }
     return(
         <div className="creditals" id='login'>

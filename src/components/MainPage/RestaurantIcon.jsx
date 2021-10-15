@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useParams } from 'react-router';
+import { GlobalContext } from '../../Context/IdProvider';
+import axios from 'axios';
+
+
 const RestaurantIcon = ({image, title,res_id})=>{
-    const {id, username} = useParams()
-    const toRestaurantPage = ()=>{
-        console.log(title)
-        window.location.href = `http://localhost:3000/menu/${id}/${username}/${res_id}/${title}/${image}`
+    const {username} = useParams()
+    const {setRestId} = useContext(GlobalContext)
+    const toRestaurantPage = async()=>{
+
+        setRestId(res_id)
+        
+        await axios.put(`http://localhost:5000/restaurant-popularity/${res_id}`).then((res)=>{}).catch((err)=>{
+            console.error(err)
+        })
+        window.location.href = `http://localhost:3000/#/menu/${username}/${res_id}/${title}/`
     }
     return(
         <section className='restaurant-holder'>

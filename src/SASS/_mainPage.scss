@@ -1,8 +1,9 @@
 @import 'variables';
 .main-stability{
     margin-left:15%;
-    margin-right:0;
-    width:50%;
+    margin-right:0%;
+    width:32%;
+    background-color: $default-background;
 }
 .main-selector{
 
@@ -16,16 +17,27 @@
 }
 .restaurant-holder{
     margin-left: 8.3%;
+    
+    
 }
 .restaurantIcon:hover{
     transform: scale(1.2);
     transition-duration: 2s;
 }
-.restaurantIcon{
+.restaurantIcon, .cartIcon,.menuItem>div{
     transform: scale(1);
     transition-duration: 2s;
+    background-repeat: no-repeat;
+    background-size:cover;
+    border-color:$title-color;
+    border-width:3px; 
+    border-style:solid;
+    box-shadow: black 2px 2px 3px;
     
     
+}
+.cartIcon{
+    background-size:50px;
 }
 section>h4{
     text-align: center;
@@ -43,12 +55,61 @@ section>h4{
 }
 .triangle.right{
     transform:rotate(45deg);
-    margin-bottom: 10%;
+    margin-bottom: 18%;
+    
 }
 .triangle.left{
     transform: rotate(-135deg);
     margin-top:10%;
+    margin-left:4%;
 }
 .restaurantIcon:hover{
     cursor:pointer;
+}
+
+$page-main-height:300%;
+.left-dark{
+    background-color: black;
+    height:$page-main-height;
+    width:15%;
+    position: absolute;
+    left:0px;
+}
+.right-dark{
+    background-color: black;
+    height:$page-main-height;
+    width:32.4%;
+    position: absolute;
+    right:-15%;
+    z-index: -6;
+}
+
+.clickThrough{
+    pointer-events: none;
+    background-color:rgba(#c4c4c4, 0.15);
+    width:1027px;
+    height: 330px;
+    position: absolute;
+    top:700px;
+    left:15%;
+    z-index:10;
+
+}
+.clickThrough.Two{
+    top:1440px;
+}
+.back-btn{
+    position:absolute;
+    background-color: $title-color;
+    color:black;
+    font-family: $title-font;
+    font-size: 18px;
+    font-weight:600;
+    width:60px;
+    height: 30px;
+    border-radius: 40%;
+    text-shadow: 2px 2px 10px black;
+}
+.back-btn:hover, .cart-btn:hover{
+    text-shadow: 2px 2px 20px white;
 }

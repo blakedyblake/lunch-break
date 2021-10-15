@@ -28,10 +28,11 @@ const TemplateSelector =({arr, type})=>{
     }
     return arr.length > 3 ? (
         <> 
+                <h4 style={{marginBottom:'10px',marginTop: '40px'}}>{type}</h4>
             <section className='main-selector'style={{
-                display:'flex', flexDirection:'row', alignItems:'center', width:'100%', borderColor:'yellow',borderWidth:'3px'
+                display:'flex', flexDirection:'row', alignItems:'center', width:'100%', borderColor:'yellow',borderWidth:'3px',
+                marginTop:'0px',
             }}>
-                    <h4>{type}</h4>
                     <div className='triangle left' onClick={moveLeft}/>
                    
                     {indexArr.map(e=>{return <RestaurantIcon res_id={arr[e].id} title={arr[e].name} image={arr[e].url}/>})

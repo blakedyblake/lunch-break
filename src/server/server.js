@@ -12,9 +12,11 @@ const cartCP = require('./API/cart')
 const payCP = require('./API/pay')
 
 app.post('/login/newuser', loginCP.signIn);
-app.get('/login/:username', loginCP.login);
+app.post('/login/:username', loginCP.login);
 
 app.get('/restaurants/no-order',mainCP.getRestaurants);
+app.get('/restaurants/global',mainCP.getRestaurantsGlobal);
+app.put('/restaurant-popularity/:rest_id',mainCP.updateRestaurantPopularity)
 
 app.get('/menu/restaurant/:restaurantId',menuCP.getRestaurantById)
 app.get('/menu/getItems/:restaurantId', menuCP.getMenuById)
@@ -22,8 +24,9 @@ app.post('/menu/addToCart/',menuCP.addToCart)
 
 app.get('/cart/getCart/:userId', cartCP.getCart)
 app.delete('/cart/:id', cartCP.deleteFromCart)
+app.put('/cart/:user_id/:item_id/:new_quantity', cartCP.updateQuantity)
 
-app.post('/pay', payCP.pay)
+app.post('/pay', payCP.pay)//payCP.pay
 
 
 const port = 5000;

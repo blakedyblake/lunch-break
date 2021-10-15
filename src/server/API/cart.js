@@ -16,7 +16,7 @@ const cartCP = {
         client.query(query)
         .then((response)=>{
             console.log(response.rows)
-            res.send(response.rows)
+            res.status(200).send(response.rows)
         }).catch(err=>{console.error(err)})
         .finally(()=>client.end())
     },
@@ -26,8 +26,15 @@ const cartCP = {
         client.connect()
         const query = `DELETE FROM current_orders WHERE order_id=${+id}`
         client.query(query).then(response=>{
-            res.status(200)
+            res.status(200).send("DELETED")
         }).catch(err=>console.error(err)).finally(()=>client.end())
+    },
+    updateQuantity:(req,res)=>{
+        const {user_id, item_id, new_quantity} = req.params
+        const client = new Client(config)
+        client.connect()
+        client.query(`UPDATE current_orders SET quantity=${+new_quantity} WHERE item_id=${+item_id} and user_id=${+user_id} `)
+        .then(()=>{}).catch(err=>console.error(err)).finally(()=>client.end())
     }
 }
 

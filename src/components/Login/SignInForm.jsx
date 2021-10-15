@@ -10,6 +10,7 @@ const SignIn = ()=>{
     const [passErr, setPassErr]=useState('')
     const [confirmErr, setConfirmErr]= useState('')
 
+    const [axiosErr, setAxiosErr] = useState("");
 
     const handleUserName = (e)=>{
         let {value} = e.target;
@@ -42,12 +43,29 @@ const SignIn = ()=>{
         })()
     }
     const newData = ()=>{
+        if(username===''){
+            setUserErr('Cannot be blank')
+            return
+        }
         if(userErr===''&&passErr===''&&confirmErr===''){
             axios.post('http://localhost:5000/login/newuser',{
                 username, password,
             }).then((res)=>{
-                console.log('API success for sign in')
+                setAxiosErr('Success! Now log in using your creditials')
+                setUsername('')
+                setPassword('')
+                setConfirmPassword('')
+                
+                let arr = document.getElementsByTagName('input')
+                for(let i of arr){
+                    console.log(i)
+                    i.value=''
+                }
             }).catch((err)=>{
+                setUsername('')
+                let input = document.getElementById('sign-in-username')
+                input.value = ''
+                setAxiosErr('Already a person with that username')
                 console.error('MyErr',err)
             })
         }else setConfirmErr('Must be valid')
@@ -57,7 +75,7 @@ const SignIn = ()=>{
         <div className="creditals" id="sign-in">
             <fieldset>
                 <legend>Sign-in</legend>
-                    <input type="text" placeholder='username'onChange={handleUserName}/><br/>
+                    <input id='sign-in-username' type="text" placeholder='username'onChange={handleUserName}/><br/>
                     <p className="error">{userErr}</p>
                     <input type="password" placeholder='password' onChange={handlePassword}/><br/>
                     <p className="error">{passErr}</p>
@@ -67,8 +85,8 @@ const SignIn = ()=>{
                     <button className='submit-btn' onClick={newData}>Submit</button>
             </fieldset>
             <fieldset>
-                <legend>Ex</legend>
-                <p>{username}|| {password} || {confirmPassword}</p>
+                <legend>Validation</legend>
+                <p className='error'>{axiosErr}</p>
             </fieldset>
         </div>
     )

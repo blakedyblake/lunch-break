@@ -4,6 +4,7 @@ const config = {
         rejectUnauthorized:false
     }
 }
+const { use } = require('bcrypt/promises');
 const {Client} = require('pg')
 
 const menuCP = {
@@ -35,24 +36,42 @@ const menuCP = {
     },
     addToCart: (req,res)=>{
         console.log(req.body)
-        const {restaurant_id, userId, item_id, quantity}= req.body;
-        const maxClient = new Client(config);
-        maxClient.connect()
-        maxClient.query('SELECT MAX(order_id) FROM current_orders')
-        .then((response)=>{
-            const client = new Client(config)
-            client.connect()
-            const newQuery = `INSERT INTO current_orders VALUES(${+response.rows[0].max +1}, ${+restaurant_id},
-                ${+userId},${+item_id}, ${+quantity})`;
-                console.log(newQuery)
-            client.query(newQuery).then((resp)=>{
-                    res.send(200)
-                }).catch(err=>console.error(err)).finally(()=>{
-                    client.end()
+        const {restaurant_id, user_id, item_id, quantity} = req.body;
+        console.log(user_id===9)
+        const isAlreadyAddedClient = new Client(config)
+        isAlreadyAddedClient.connect()
+        isAlreadyAddedClient.query(`SELECT * FROM current_orders WHERE item_id=${item_id} and user_id=${user_id}`)
+        .then((alreadyResponse)=>{
+            console.log(alreadyResponse.rows)
+            if(alreadyResponse.rows.length === 0){
+                maxClient.connect()
+                maxClient.query('SELECT MAX(order_id) FROM current_orders')
+                .then((response)=>{
+                    const client = new Client(config)
+                    client.connect()
+                    console.log(typeof user_id)
+                    const newQuery = `INSERT INTO current_orders VALUES(${+response.rows[0].max +1}, ${+restaurant_id},
+                        ${+user_id},${+item_id}, ${+quantity})`;
+                        console.log(newQuery)
+                    client.query(newQuery).then((resp)=>{
+                            res.send(200)
+                        }).catch(err=>console.error(err)).finally(()=>{
+                            client.end()
+                        })
+                }).catch((err)=>console.error(err)).finally(()=>{
+                    maxClient.end()
                 })
-        }).catch((err)=>console.error(err)).finally(()=>{
-            maxClient.end()
-        })
+            } else{
+
+                const updateOrdersClient = new Client(config)
+                updateOrdersClient.connect()
+                updateOrdersClient.query(`UPDATE current_orders SET quantity=${alreadyResponse.rows[0].quantity + quantity} WHERE item_id=${item_id} and user_id=${user_id}`)
+                .then(()=>{}).catch(err=>console.error(err)).finally(()=>updateOrdersClient.end())
+            }
+        }).catch(err=>console.error(err)).finally(()=>isAlreadyAddedClient.end())
+        const maxClient = new Client(config);
+        
+
     }
 
     
