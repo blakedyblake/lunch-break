@@ -16,8 +16,16 @@ const SignIn = ()=>{
         let {value} = e.target;
         setUsername(value);
         (()=>{
-            if(value.length >=8) setUserErr('');
-            else setUserErr('err')
+            let min = 8
+            let max = 30
+            console.log(value.length, (value.length >=min), (value.length<=max))
+            if(value===''){
+                setUserErr('')
+                return
+            }
+            if((value.length >=min) && (value.length<=max)) setUserErr('');
+            else if(value.length>max) setUserErr(`Username cannot have more than ${max} characters`)
+            else setUserErr(`Username needs ${min} or more characters`)
             
         })()
         
@@ -43,10 +51,11 @@ const SignIn = ()=>{
         })()
     }
     const newData = ()=>{
-        if(username===''){
-            setUserErr('Cannot be blank')
+        if(username===''||password===''||confirmPassword===''){
+            setAxiosErr('Fields cannot be blank')
             return
         }
+    
         if(userErr===''&&passErr===''&&confirmErr===''){
             axios.post('http://localhost:5000/login/newuser',{
                 username, password,
@@ -62,9 +71,6 @@ const SignIn = ()=>{
                     i.value=''
                 }
             }).catch((err)=>{
-                setUsername('')
-                let input = document.getElementById('sign-in-username')
-                input.value = ''
                 setAxiosErr('Already a person with that username')
                 console.error('MyErr',err)
             })

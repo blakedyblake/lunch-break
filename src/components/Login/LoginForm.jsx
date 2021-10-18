@@ -21,11 +21,7 @@ const LogIn = ()=>{
     const handleSubmit = ()=>{
         console.log(context, 'Context before axios')
         axios.post(`http://localhost:5000/login/${username}`,{password}).then(  (res)=>{
-            
-            // console.log(res.data.id, typeof res.data.id)
-            // console.log(res.status)
-            // console.log(res.status===200, res.status===401)
-            
+        
             let _200 = (res.status===200)
             
             setLogError(_200? 'Success':'Wrong username/password');
