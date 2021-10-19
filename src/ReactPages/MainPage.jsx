@@ -3,25 +3,33 @@ import React, {useContext, useEffect, useState} from "react";
 import { useParams } from "react-router";
 import { GlobalContext } from "../Context/IdProvider";
 import TemplateSelector from "../components/MainPage/TemplateSelector";
+import Filters from "../components/MainPage/Filters";
 
 const MainPage = ()=>{
     const {username} = useParams()
+    const [type, setType] = useState('None')
     const [arr1, setArr1]= useState([])
     const [arrGP, setArrGP]= useState([])
-    
+    const [altTitle, setAltTitle] = useState('')
+
     const context = useContext(GlobalContext)
     console.log(context.user_id)
     if(context.user_id===0) window.location.href = 'http://localhost:3000/'
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/restaurants/no-order').then(res=>{
-            console.log(res.data)    
-            setArr1(res.data)
-        })
+        console.log('trigger:', type);
         axios.get('http://localhost:5000/restaurants/global').then((res)=>{
             setArrGP(res.data)
         })
-    },[])
+        if(type==='None') return
+        
+        axios.get(`http://localhost:5000/restaurant-type/${type}`).then(res=>{
+            console.log(res.data)    
+            setArr1(res.data)
+
+            setAltTitle(`${type} Restaurants on Lunch Break`)
+        }).catch(err=>console.error(err))
+    },[type])
     return(
         <>
             <div className='left-dark'></div>
@@ -32,11 +40,15 @@ const MainPage = ()=>{
                 <h2>Welcome, {username}!</h2>
                 <TemplateSelector arr={arrGP} type='Popular Restaurants on Lunch Break'></TemplateSelector>
                 <div className="clickThrough 1"></div>
-                <TemplateSelector arr={arr1} type='Popular on Lunch Break'></TemplateSelector>
+                <Filters fn={setType}/>
                 <div className="clickThrough Two"></div>
-                <TemplateSelector arr={arr1} type='Popular on Lunch Break'></TemplateSelector>
+                <TemplateSelector arr={arr1} type={altTitle}></TemplateSelector>
 
-                
+                <div className="whiteBox"style={{width:'880px', 
+                height:'200px', borderRadius:'20%', backgroundColor:'white',
+                position:'absolute', top:'1850px', left:'300px'}}></div>
+
+
 
             </div>
         </>

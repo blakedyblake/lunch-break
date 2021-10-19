@@ -4,7 +4,7 @@ import { useContext } from 'react/cjs/react.development';
 import { GlobalContext } from '../../Context/IdProvider';
 
 const CartRow = ({data, fn})=>{
-    const {id, quantity, restaurant, name, url,price} = data;
+    const {id, item_id, quantity, restaurant, name, url,price} = data;
     const [isHidden, setHidden] = useState(true)
     const {user_id} = useContext(GlobalContext)
     const [currQuantity, setCurrQuantity] = useState(quantity)
@@ -30,9 +30,13 @@ const CartRow = ({data, fn})=>{
         let span = document.getElementById(span_id)
         span.innerText = `${currQuantity}`
         setHidden(true)
+        
 
         //Axios call to edit the value
-        axios.put(`http://localhost:5000/cart/${user_id}/${id}/${currQuantity}`).then(()=>{})
+        axios.put(`http://localhost:5000/cart/${id}/${currQuantity}`).then((res)=>{
+            console.log('Fire')    
+            fn(Math.random())
+        })
         .catch(err=>console.error(err))
 
     }
@@ -50,7 +54,7 @@ const CartRow = ({data, fn})=>{
             <section style={{display:'flex', flexDirection:'column', flexGrow:2}}>
                 <h2>{restaurant}: {name}</h2>
                 <p>{description}</p>
-                <h2>{price} * <span style={{cursor:'pointer'}} id={span_id} onClick={ToSelect}>{quantity}</span> 
+                <h2>${price} X <span style={{cursor:'pointer', textDecoration:'underline',textShadow:' white 0px 0px 20px,white 0px 0px 20px,white 0px 0px 20px'}} id={span_id} onClick={ToSelect}>{quantity}</span> 
                     <input onMouseLeave={updateValue} onChange={e=>setCurrQuantity(e.target.value)} 
                         type='number' min={0} defaultValue={quantity} id={`input-${span_id}`} hidden={isHidden}/> = 
                             {(price* currQuantity).toFixed(2)}</h2>

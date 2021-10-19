@@ -17,7 +17,9 @@ const CartPage = ()=>{
     useEffect(()=>{
         console.log('useEffect')
         axios.get(`http://localhost:5000/cart/getCart/${context.user_id}`).then(res=>{
+            console.log(res.data)
             setCartData(res.data)
+            console.log(res.data)
             let sum = 0;
             for(let i of res.data){
                 sum+= i.price * i.quantity
@@ -30,13 +32,13 @@ const CartPage = ()=>{
     
     const toPayment = ()=>{
         context.setTotal(total)
-        window.location.href = `http://localhost:3000/#/pay/${context.user_id}/${username}/${total}`;
+        window.location.href = `http://localhost:3000/#/pay/${username}/${total}`;
     }
     return cartData ?(
         <>  
             <div className='left-dark' style={{top:'-30px', zIndex:-4}}></div>
             <div className='right-dark' style={{top:'-30px'}}></div>
-
+            
             <BackButton href={`http://localhost:3000/#/menu/${username}/${context.rest_id}/test`} style={{right:'70%'}}/>
             <h1 style={{marginBottom:'70px'}}>Cart Page</h1>
             <div className='cartlist'>

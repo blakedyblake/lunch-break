@@ -8,6 +8,23 @@ const { use } = require('bcrypt/promises');
 const {Client} = require('pg')
 
 const menuCP = {
+    increasePopularity: (req,res)=>{
+        const {itemId} = req.params
+
+        const findClient = new Client(config)
+        findClient.connect()
+        findClient.query(`SELECT (global_popularity) FROM menu_items WHERE id=${itemId}`)
+        .then(findResponse=>{
+            const {global_popularity} = findResponse.rows[0];
+            
+            const updateClient = new Client(config)
+            updateClient.connect()
+            updateClient.query(`UPDATE menu_items SET global_popularity=${global_popularity+1} WHERE id=${itemId}`)
+            .then((response1)=>{
+                res.status(200).send()
+            }).catch(err=>console.error(err)).finally(()=>updateClient.end())
+        }).catch(err=>console.error('Item Not Found Err:',err)).finally(()=>findClient.end())
+    },
     getRestaurantById: (req,res)=>{
         const {restaurantId} = req.params;
         const client = new Client(config)
@@ -25,7 +42,7 @@ const menuCP = {
         const {restaurantId} = req.params;
         const client = new Client(config)
         client.connect()
-        client.query(`SELECT * FROM menu_items WHERE restaurant_id=${restaurantId}`)
+        client.query(`SELECT * FROM menu_items WHERE restaurant_id=${restaurantId} ORDER BY global_popularity DESC`)
         .then(response=>{
             res.status(200).send(response.rows)
         }).catch((err)=>{

@@ -30,6 +30,7 @@ const PayPage = ()=>{
         setPayType('')
         setCardNumber(0)
     },[])
+
     const Submit = ()=>{
         
         const obj = {
@@ -42,7 +43,8 @@ const PayPage = ()=>{
         }
         axios.post('http://localhost:5000/pay', obj).then((res)=>{
             
-            alert(`Payment Successful`)
+            window.location.href = `http://localhost:3000/#/success/${username}`
+
         }).catch(err=> console.error(err)).finally(()=>{setChanged(changed + 1)})
         
     }
@@ -71,9 +73,10 @@ const PayPage = ()=>{
                         <input defaultValue='' className='textInput' type='text' placeholder='Time of Lunch Break' onChange={e=>setDeliveryDate(e.target.value)}/>
                     </section>
                 
-                <button style={{cursor:'pointer', flexGrow:4}}onClick={Submit}>Pay</button>
+                    <button style={{cursor:'pointer', flexGrow:4}}onClick={Submit}>Pay</button>
                 </section>
             </fieldset>
+            <p>Note: this is a practice webPage. Please do not enter your real payment information.</p>
         </>
     )
 }

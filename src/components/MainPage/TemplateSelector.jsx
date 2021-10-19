@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import { useParams } from 'react-router';
 import RestaurantIcon from './RestaurantIcon';
-const TemplateSelector =({arr, type})=>{
-    const {id} = useParams()
 
+
+const TemplateSelector =({arr, type})=>{
+ 
     const [indexArr, setIndexArr] = useState([0,1,2,3]);
-    // useEffect(()=>{
-    //     setDataArr(arr);
-    // },[arr])
+  
+    
     const moveRight = ()=>{
         let temp = [...indexArr];
         temp = temp.map(e=>{
@@ -26,7 +25,7 @@ const TemplateSelector =({arr, type})=>{
         console.log(temp)
         setIndexArr(temp)
     }
-    return arr.length > 3 ? (
+    return arr.length > 0 ? (
         <> 
                 <h4 style={{marginBottom:'10px',marginTop: '40px'}}>{type}</h4>
             <section className='main-selector'style={{
@@ -43,8 +42,9 @@ const TemplateSelector =({arr, type})=>{
             </section>
         </>
     ) : (
-        
-        <div className="loading"></div>
+        <>
+            <h4>None</h4>
+        </>
     )
 }
 export default TemplateSelector;

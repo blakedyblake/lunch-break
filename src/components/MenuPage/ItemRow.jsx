@@ -27,6 +27,12 @@ const MenuItem = ({key, url, name,description, price,item_id})=>{
 
             
         }).catch(err=>console.error(err))
+
+        //Food Popularity
+        axios.put(`http://localhost:5000/menu-item-popularity/${item_id}`).then(()=>{
+
+        }).catch(err=>console.error(err))
+        
         alert(`Added ${quantity} ${name}s to cart`)
         
     }

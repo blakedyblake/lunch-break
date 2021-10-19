@@ -31,6 +31,17 @@ const mainCP = {
             client.end()
         })
     },
+    getRestaurantsByType:(req,res)=>{
+        const {type} = req.params
+        const client = new Client(config)
+        client.connect()
+        const query = `SELECT * FROM restaurants WHERE type = '${type}' ORDER BY global_popularity DESC`
+        console.log(query)
+        client.query(query)
+        .then((response)=>{
+            res.status(200).send(response.rows)
+        }).catch(err=>console.error(err)).finally(()=>client.end())
+    },
 
     updateRestaurantPopularity:(req,res)=>{
         const {rest_id} = req.params
