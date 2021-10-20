@@ -1,9 +1,22 @@
 # Lunch Break
+## Tools Used
+- SASS
+- React
+- React Hooks
+- Node.js 
+- Express
+- Postman
+- DBeaver
+- pg SQL package
+- bcrypt
+- Heroku
+- CSS
+- PostgresSQL
 
-
-## Features
 ## Setup
 Clone the repository, run npm start and node src/server/server.js. The data base runs on heroku: it does not need to be downloaded locally.  
+
+## Features
 
 ### Login Page
 The user can login into an account or create a new one under the sign in fieldset.  
