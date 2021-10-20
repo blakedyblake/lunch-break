@@ -3,7 +3,7 @@
 
 ## Features
 ### Login Page
-![LoginPage](./src/images/LoginPage)
+![LoginPage](./src/images/LoginPage.png)
 ### Main Page
 
 ### Menu Pages
