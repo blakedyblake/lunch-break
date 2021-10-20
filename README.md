@@ -32,18 +32,45 @@ Note: If the user adds the same item two different times, they do not come as se
 The menu database where the food items of all restaurants are stored
 ![LoginPage](./src/images/Menu3.png)  
 ### Cart Page
+Presents all of the users cart from the current_orders table.  
+![LoginPage](./src/images/CartPage1.png)  
+The red button deletes that item from the cart, shown in the next render thanks to useEffect.  
+The glowing part of the span exists to attract the users attention. Clicking on it allows the user to alter the quantity of what he/she ordered.  
+![LoginPage](./src/images/CartPage2.png)  
+Below the Cart list there is a cart total header and a Pay Now button.  
+The cart total updates everytime the quantity is updated  
+The Pay Now button takes the user to the pay page  
+![LoginPage](./src/images/CartPage3.png)  
+The current_orders table:  
+![LoginPage](./src/images/CartPage4.png)  
+
 
 ### Pay Page and Success
+Here the user can give his location and information necessary for the payment. Upon pressing the Pay button this information goes to the pay_info table  
+![LoginPage](./src/images/Pay1.png)  
+Once the payment is successful the user is taken to a page that notifies(No actual paying function takes place here, nevertheless please don't save your actual payment information on my database.)  
+![LoginPage](./src/images/Pay2.png)  
+pay_info Database(No Real informaiton here):  
+![LoginPage](./src/images/Pay4.png) 
+
+#### Currently Working On: Validation
+Should be finished pretty soon. Things like checking if the credit card is valid 
+
+### Other Databases
+Once the payment is submitted, the cart in current orders is deleted and the information is taken to two different tables: carts(which links cart_id to the user that made them) and confirmed_carts which has all of the orders from current_orders that got deleted. This will be utilized in a future Employee page that our employees will use to deliver the items from those carts  
+  
+Cart Database:  
+![LoginPage](./src/images/Pay3.png) 
+comfirmed_carts Database:  
+![LoginPage](./src/images/Pay5.png) 
 
 ## Future Features
 
 ### Media Queries
-
+So that the site looks nice no matter what devices is using it.  
 ### New Restaurants/Filters
-
+Add more restaurants and items to their menus. Maybe add some Vegan restaurants with a vegan filter.  
 ### Employee Page and Geolocation
-
-### More Restaurants and Food
-
+Have it so that the users address given in the payment phase is calculated so that nearby employees can use this site to know which deliverys they have to do.  
 ### Flavors
-
+Sometimes the same item comes in a variety of Flavors. This would alter the layout of menu components. What about drinks that come with meals?  
