@@ -15,9 +15,8 @@ const LogIn = ()=>{
 
     const handleUserName = (e)=>{
         setUsername(e.target.value);
-        
-
     }
+    
     const handleSubmit = ()=>{
         console.log(context, 'Context before axios')
         axios.post(`http://localhost:5000/login/${username}`,{password}).then(  (res)=>{

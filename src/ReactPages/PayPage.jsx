@@ -48,6 +48,13 @@ const PayPage = ()=>{
         }).catch(err=> console.error(err)).finally(()=>{setChanged(changed + 1)})
         
     }
+    const [nameErr, setNameErr]=useState('')
+    const handleName = (event)=>{
+        setRealName(event.target.value)
+        let regex = /^A-Za-z+\s A-Za-z+$/;
+        
+        setNameErr(regex.test(event.target.value)?'':'First and Last name, please')
+    }
     
     return (
         <>  
@@ -58,7 +65,8 @@ const PayPage = ()=>{
                 <section style={{display:'flex', flexDirection:'row'}}>
                     <section style={{marginRight:'20%'}}>
 
-                        <input defaultValue={realName} className='textInput' type="text" placeholder={"name"} onChange={e=>setRealName(e.target.value)}/><br/>
+                        <input defaultValue={realName} className='textInput' type="text" placeholder={"name"} onChange={handleName}/><br/>
+                        <p className="error">{}</p>
                         <input defaultValue={address} className='textInput' type="text" placeholder='address' onChange= {e=>setAddress(e.target.value)}/><br/>
                         
                         <input type="radio" id="credit" value='credit' name='payment_type' onClick={e=>setPayType('Credit')}/>
