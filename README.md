@@ -1,23 +1,24 @@
 # Lunch Break
 
 
-# Features
+## Features
+### Login Page
+![LoginPage](./src/images/LoginPage)
+### Main Page
 
-## Login Page
+### Menu Pages
 
-## Main Page
+### Cart Page
 
-## Menu Pages
+### Pay Page and Success
 
-## Cart Page
+## Future Features
 
-## Pay Page and Success
+### Media Queries
 
-# Future Features
+### Employee Page and Geolocation
 
-## Employee Page and Geolocation
+### More Restaurants and Food
 
-## More Restaurants and Food
-
-## Flavors
+### Flavors
 
