@@ -33,6 +33,7 @@ const mainCP = {
     },
     getRestaurantsByType:(req,res)=>{
         const {type} = req.params
+        if(type==='None')res.status(200).send([])
         const client = new Client(config)
         client.connect()
         const query = `SELECT * FROM restaurants WHERE type = '${type}' ORDER BY global_popularity DESC`

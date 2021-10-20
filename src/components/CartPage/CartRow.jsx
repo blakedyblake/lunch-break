@@ -14,8 +14,7 @@ const CartRow = ({data, fn})=>{
     const removeFromCart = ()=>{
         console.log('Hello');
         axios.delete(`http://localhost:5000/cart/${id}`).then((res)=>{
-            console.log(res.status)
-            console.log('From the other side')
+            alert(`Deleting all ${name}s from cart`)
             fn(Math.random())
         }).catch(err=>console.error(err))
     }
@@ -34,8 +33,9 @@ const CartRow = ({data, fn})=>{
 
         //Axios call to edit the value
         axios.put(`http://localhost:5000/cart/${id}/${currQuantity}`).then((res)=>{
-            console.log('Fire')    
+   
             fn(Math.random())
+            alert(`Changed Quantity of ${name} to ${currQuantity}`)
         })
         .catch(err=>console.error(err))
 
