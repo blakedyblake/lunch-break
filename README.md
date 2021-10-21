@@ -26,14 +26,14 @@ and if the confirm password doesn't match.
 ![LoginPage](./src/images/LoginErr.png)  
 ![LoginPage](./src/images/SigninErrs.png)  
 ![LoginPage](./src/images/UsedUserName.png)  
-Password data is encrypted to the users table on the Heroku database.
+Password data is encrypted to the users table on the Heroku database.  
 ![SQL](./src/images/UsersSQL.png)  
 ### Main Page
 The user can choose from a selection of the restaurants of the database in order of popularity. The left and right arrows toggle up and down the array.   
 ![LoginPage](./src/images/MainSelector.png)  
-There is a filter for the second selection for which types of food the user wishes to consume  
+There is a filter for the second selection for which types of food the user wishes to consume.  
 ![LoginPage](./src/images/MainFilters.png)  
-The database for the restaurants, also clicking on the restaurants increases the popularity of that restaurant  
+The database for the restaurants, also clicking on the restaurants increases the popularity of that restaurant.  
 ![LoginPage](./src/images/RestaurantsSQL.png)  
 
 ### Menu Pages
@@ -42,7 +42,7 @@ Clicking on a restaurant of the main page takes the user to its Restaurant Page 
 The user can choose the Quantity and add the item to the cart. This sends an alert to show that it worked.  
 Note: If the user adds the same item two different times, they do not come as separate rows on the current_orders table where the carts of all users are stored. Instead the new quantity is added to the old quantity. The To Cart button allows the user to see their cart.   
 ![LoginPage](./src/images/Menu2.png)  
-The menu database where the food items of all restaurants are stored
+The menu database where the food items of all restaurants are stored.
 ![LoginPage](./src/images/Menu3.png)  
 ### Cart Page
 Presents all of the users cart from the current_orders table.  
@@ -51,19 +51,20 @@ The red button deletes that item from the cart, shown in the next render thanks 
 The glowing part of the span exists to attract the users attention. Clicking on it allows the user to alter the quantity of what he/she ordered.  
 ![LoginPage](./src/images/CartPage2.png)  
 Below the Cart list there is a cart total header and a Pay Now button.  
-The cart total updates everytime the quantity is updated  
-The Pay Now button takes the user to the pay page  
+The cart total updates everytime the quantity is updated.  
+The Pay Now button takes the user to the pay page.  
 ![LoginPage](./src/images/CartPage3.png)  
 The current_orders table:  
 ![LoginPage](./src/images/CartPage4.png)  
 
 
 ### Pay Page and Success
-Here the user can give his location and information necessary for the payment. Upon pressing the Pay button this information goes to the pay_info table  
+Here the user can give his location and information necessary for the payment. Upon pressing the Pay button this information goes to the pay_info table.  
 ![LoginPage](./src/images/Pay1.png)  
-Once the payment is successful the user is taken to a page that notifies(No actual paying function takes place here, nevertheless please don't save your actual payment information on my database.)  
+Once the payment is successful the user is taken to a page that notifies them that the payment was successful.  
+(No actual paying function takes place here, nevertheless please don't save your actual payment information on my database.)  
 ![LoginPage](./src/images/Pay2.png)  
-pay_info Database(No Real informaiton here):  
+The pay_info database(No Real informaiton here):  
 ![LoginPage](./src/images/Pay4.png) 
 
 #### Currently Working On: Validation
@@ -73,7 +74,7 @@ Should be finished pretty soon. Things like checking if the credit card is valid
 Once the payment is submitted, the cart in current orders is deleted and the information is taken to two different tables: carts(which links cart_id to the user that made them) and confirmed_carts which has all of the orders from current_orders that got deleted. This will be utilized in a future Employee page that our employees will use to deliver the items from those carts  
   
 Cart Database:  
-![LoginPage](./src/images/Pay3.png) 
+![LoginPage](./src/images/Pay3.png)    
 comfirmed_carts Database:  
 ![LoginPage](./src/images/Pay5.png) 
 
