@@ -73,9 +73,9 @@ Should be finished pretty soon. Things like checking if the credit card is valid
 ### Other Databases
 Once the payment is submitted, the cart in current orders is deleted and the information is taken to two different tables: carts(which links cart_id to the user that made them) and confirmed_carts which has all of the orders from current_orders that got deleted. This will be utilized in a future Employee page that our employees will use to deliver the items from those carts  
   
-Cart Database:  
+The current carts database:  
 ![LoginPage](./src/images/Pay3.png)    
-comfirmed_carts Database:  
+The current comfirmed_carts database:  
 ![LoginPage](./src/images/Pay5.png) 
 
 ## Future Features

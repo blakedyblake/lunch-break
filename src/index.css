@@ -85,6 +85,12 @@ h1, h2, h3, h4 {
   border-radius: 4px;
 }
 
+p.error {
+  font-family: "Serif";
+  font-size: 10px;
+  text-decoration: underline red;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -188,6 +194,7 @@ section > h4 {
   position: absolute;
   top: 700px;
   left: 15%;
+  margin: 0px;
   z-index: 10;
 }
 

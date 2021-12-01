@@ -12,7 +12,7 @@ const CartPage = ()=>{
     const [total, setTotal] = useState(0)
     const [isChanged, setChanged] = useState(false)
     const context = useContext(GlobalContext)
-    //if(user_id===0) window.location.href = 'http://localhost:3000/'
+    if(context.user_id===0) window.location.href = 'http://localhost:3000/'
 
     useEffect(()=>{
         console.log('useEffect')
@@ -38,7 +38,7 @@ const CartPage = ()=>{
         <>  
             <div className='left-dark' style={{top:'-30px', zIndex:-4}}></div>
             <div className='right-dark' style={{top:'-30px'}}></div>
-            
+
             <BackButton href={`http://localhost:3000/#/menu/${username}/${context.rest_id}/test`} style={{right:'70%'}}/>
             <h1 style={{marginBottom:'70px'}}>Cart Page</h1>
             <div className='cartlist'>

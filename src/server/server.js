@@ -32,6 +32,6 @@ app.post('/pay', payCP.pay)//payCP.pay
 
 
 const port = 5000;
-app.listen(port, function() {
+app.listen(process.env.PORT||port, function() {
   console.log("Listening on " + port);
 });

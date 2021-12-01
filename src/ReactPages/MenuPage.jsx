@@ -5,12 +5,15 @@ import BackButton from '../components/BackButton'
 import MenuItem from '../components/MenuPage/ItemRow'
 
 const MenuPage = ()=>{
+    //Neccessary data
     const { username, restaurantId,restaurantName} = useParams()
     const [restaurantData, SetRestaurantData] = useState([]);
     const [menuData, SetMenuData] = useState([])
 
     console.log(restaurantId)
 
+
+    //Gets menu data from the restaurant id provided in the window.location.href parameter
     useEffect(()=>{
         //API call for restaurant photo
         axios.get(`http://localhost:5000/menu/restaurant/${restaurantId}`).then(res=>{
@@ -21,6 +24,7 @@ const MenuPage = ()=>{
             SetMenuData(res.data)
         }).catch(err=>{console.error(err)})
     },[])
+
     return (restaurantData.length && menuData.length)?(
         <>  
             <div className='left-dark' style={{top:'-30px'}}></div>

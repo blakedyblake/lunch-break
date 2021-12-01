@@ -83,6 +83,11 @@ body {
   
 
   }
+  p.error{
+    font-family: 'Serif';
+    font-size:10px;
+    text-decoration: underline red;
+  }
   @keyframes spin {
     from{
       transform: rotate(0deg)

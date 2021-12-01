@@ -6,6 +6,7 @@ import TemplateSelector from "../components/MainPage/TemplateSelector";
 import Filters from "../components/MainPage/Filters";
 
 const MainPage = ()=>{
+    //Neccessary hook data
     const {username} = useParams()
     const [type, setType] = useState('None')
     const [arr1, setArr1]= useState([])
@@ -14,8 +15,11 @@ const MainPage = ()=>{
 
     const context = useContext(GlobalContext)
     console.log(context.user_id)
+
     if(context.user_id===0) window.location.href = 'http://localhost:3000/'
 
+    //There are two different lists of restaurants from the API calls
+    //Universal and filtered, both are sorted by popularity
     useEffect(()=>{
         console.log('trigger:', type);
         axios.get('http://localhost:5000/restaurants/global').then((res)=>{
@@ -30,6 +34,8 @@ const MainPage = ()=>{
             setAltTitle(`${type} Restaurants on Lunch Break`)
         }).catch(err=>console.error(err))
     },[type])
+
+
     return(
         <>
             <div className='left-dark'></div>
