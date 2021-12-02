@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { useParams } from 'react-router';
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import { GlobalContext } from '../../Context/IdProvider';
 
 const MenuItem = ({key, url, name,description, price,item_id})=>{
