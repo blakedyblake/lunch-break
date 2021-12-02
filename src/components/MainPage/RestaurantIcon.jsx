@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { GlobalContext } from '../../Context/IdProvider';
 import axios from 'axios';
 
-console.log('a');
+console.log('aa');
 
 const RestaurantIcon = ({image, title,res_id})=>{
     const {username} = useParams()
