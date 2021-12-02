@@ -7,6 +7,7 @@ import MainPage from './ReactPages/MainPage'
 import CartPage from './ReactPages/CartPage'
 import PayPage from './ReactPages/PayPage'
 import SuccessPage from './ReactPages/Success'
+console.log('kotae doko eee')
 
 export default
     (
