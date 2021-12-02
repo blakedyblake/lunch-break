@@ -6,12 +6,10 @@ import MenuItem from '../components/MenuPage/ItemRow'
 
 const MenuPage = ()=>{
     //Neccessary data
-    const { username,} = useParams()
+    const { username, restaurantId,restaurantName} = useParams()
     const [restaurantData, SetRestaurantData] = useState([]);
     const [menuData, SetMenuData] = useState([])
-    //See if this makes it load...
-    const restaurantId = 0;
-    const restaurantName = 'Zaxbys';
+
     console.log(restaurantId)
 
 
@@ -19,13 +17,13 @@ const MenuPage = ()=>{
     useEffect(()=>{
         //API call for restaurant photo https://lb-server.herokuapp.com/
         axios.get(`https://lb-server.herokuapp.com/menu/restaurant/${restaurantId}`).then(res=>{
-            console.log('rest info')
             SetRestaurantData(res.data)
+            console.log('RD: ',res.data)
         }).catch(err=>{console.error(err)})
         //API call for menue items https://lb-server.herokuapp.com/
         axios.get(`https://lb-server.herokuapp.com/menu/getItems/${restaurantId}`).then(res=>{
-            console.log('Menu info')
             SetMenuData(res.data)
+            console.log('MD: ',res.data)
         }).catch(err=>{console.error(err)})
     },[])
 
