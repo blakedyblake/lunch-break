@@ -8,7 +8,8 @@ const MenuItem = ({key, url, name,description, price,item_id})=>{
     const [quantity, setQuantity] = useState(0);
     const { restaurantId, username} = useParams();
     const {user_id} = useContext(GlobalContext);
-    if(user_id===0) window.location.href = 'http://localhost:3000/'
+    console.log(user_id)
+    if(user_id===0) window.location.href = 'https://main.d3h3garbunpjkz.amplifyapp.com/#/'
 
     const addToCart = ()=>{
         if(quantity<1){

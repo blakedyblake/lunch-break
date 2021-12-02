@@ -25,7 +25,7 @@ const MenuPage = ()=>{
             SetMenuData(res.data)
             console.log('MD: ',res.data)
         }).catch(err=>{console.error(err)})
-    },[])
+    },[restaurantId])
 
     return (restaurantData.length && menuData.length)?(
         <>  
