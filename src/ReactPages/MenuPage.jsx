@@ -29,7 +29,6 @@ const MenuPage = ()=>{
 
     return (restaurantData.length && menuData.length)?(
         <>  
-            <h1>Kotae doko EEEEEEEEEEE</h1>
             <div className='left-dark' style={{top:'-30px'}}></div>
             <div className='right-dark' style={{top:'-30px'}}></div>
             <div  style={{
