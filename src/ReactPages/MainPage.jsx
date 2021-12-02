@@ -16,7 +16,7 @@ const MainPage = ()=>{
     const context = useContext(GlobalContext)
     console.log(context.user_id)
 
-    if(context.user_id===0) window.location.href = 'http://localhost:3000/'
+    if(context.user_id===0) window.location.href = 'https://main.d3h3garbunpjkz.amplifyapp.com/#/'
 
     //There are two different lists of restaurants from the API calls
     //Universal and filtered, both are sorted by popularity

@@ -41,7 +41,7 @@ const MenuPage = ()=>{
                 
                 
                 }}/>
-            <BackButton href={`http://localhost:3000/#/main/${username}`} style={{top:'40px', left:'290px'}}/>
+            <BackButton href={`https://main.d3h3garbunpjkz.amplifyapp.com/#/main/${username}`} style={{top:'40px', left:'290px'}}/>
             <h1>{restaurantName!=='test'?restaurantName: restaurantData[0].name}</h1>
             {menuData.map((e,k)=>{
                 return <MenuItem key={k} item_id={e.id} url={e.url} price={e.price} description={e.description} name={e.name}></MenuItem>

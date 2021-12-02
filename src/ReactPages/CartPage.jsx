@@ -12,7 +12,7 @@ const CartPage = ()=>{
     const [total, setTotal] = useState(0)
     const [isChanged, setChanged] = useState(false)
     const context = useContext(GlobalContext)
-    if(context.user_id===0) window.location.href = 'http://localhost:3000/'
+    if(context.user_id===0) window.location.href = 'https://main.d3h3garbunpjkz.amplifyapp.com/#/'
 
     useEffect(()=>{
         console.log('useEffect')
@@ -33,14 +33,14 @@ const CartPage = ()=>{
     
     const toPayment = ()=>{
         context.setTotal(total)
-        window.location.href = `http://localhost:3000/#/pay/${username}/${total}`;
+        window.location.href = `https://main.d3h3garbunpjkz.amplifyapp.com/#/pay/${username}/${total}`;
     }
     return cartData ?(
         <>  
             <div className='left-dark' style={{top:'-30px', zIndex:-4}}></div>
             <div className='right-dark' style={{top:'-30px'}}></div>
 
-            <BackButton href={`http://localhost:3000/#/menu/${username}/${context.rest_id}/test`} style={{right:'70%'}}/>
+            <BackButton href={`https://main.d3h3garbunpjkz.amplifyapp.com/#/menu/${username}/${context.rest_id}/test`} style={{right:'70%'}}/>
             <h1 style={{marginBottom:'70px'}}>Cart Page</h1>
             <div className='cartlist'>
                 {cartData.map((e,k)=>{

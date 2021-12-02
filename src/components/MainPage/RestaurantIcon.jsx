@@ -14,7 +14,8 @@ const RestaurantIcon = ({image, title,res_id})=>{
         await axios.put(`https://lb-server.herokuapp.com/restaurant-popularity/${res_id}`).then((res)=>{}).catch((err)=>{
             console.error(err)
         })
-        window.location.href = `http://localhost:3000/#/menu/${username}/${res_id}/${title}/`
+        //Client address
+        window.location.href = `https://main.d3h3garbunpjkz.amplifyapp.com/#/menu/${username}/${res_id}/${title}/`
     }
     return(
         <section className='restaurant-holder'>

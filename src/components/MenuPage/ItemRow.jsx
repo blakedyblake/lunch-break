@@ -39,7 +39,7 @@ const MenuItem = ({key, url, name,description, price,item_id})=>{
         
     }
     const GoToCart = ()=>{
-        window.location.href = `http://localhost:3000/#/cart/${username}`
+        window.location.href = `https://main.d3h3garbunpjkz.amplifyapp.com/#/cart/${username}`
     }
     return(
         <section className='menuItem' id ={key} style={{display:'flex', flexDirection:'row', marginBottom:'20px', alignItems:'center',

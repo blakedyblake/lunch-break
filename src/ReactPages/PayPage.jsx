@@ -23,7 +23,7 @@ const PayPage = ()=>{
     const {username} = useParams()
 
     //Refreshing the page causes the site to drop the user id from context, making it necessary to have the user resign in. Transition to Session data later on
-    if(user_id===0) window.location.href = 'http://localhost:3000/'
+    if(user_id===0) window.location.href = 'https://main.d3h3garbunpjkz.amplifyapp.com/#/'
     
 
     const [changed, setChanged] = useState(0)
@@ -71,7 +71,7 @@ const PayPage = ()=>{
             //https://lb-server.herokuapp.com/
             axios.post('https://lb-server.herokuapp.com/pay', obj).then((res)=>{
                 //Upon success the user goes to a simple success page
-                window.location.href = `http://localhost:3000/#/success/${username}`
+                window.location.href = `https://main.d3h3garbunpjkz.amplifyapp.com/#/success/${username}`
     
             }).catch(err=> console.error(err)).finally(()=>{setChanged(changed + 1)})
         }
@@ -124,7 +124,7 @@ const PayPage = ()=>{
     //Pay page JSX
     return (
         <>  
-            <BackButton href={`http://localhost:3000/#/cart/${username}`} style={{left:'330px'}}></BackButton>
+            <BackButton href={`https://main.d3h3garbunpjkz.amplifyapp.com/#/cart/${username}`} style={{left:'330px'}}></BackButton>
             <h1>Make Payment</h1>
             <fieldset style={{width:'30%', marginLeft:'35%'}}>
                 <legend>Form</legend>
