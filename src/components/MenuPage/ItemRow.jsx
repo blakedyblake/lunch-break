@@ -19,7 +19,8 @@ const MenuItem = ({key, url, name,description, price,item_id})=>{
             restaurant_id:+restaurantId, user_id, item_id:+item_id, quantity
         }
         console.log(obj)
-        axios.post('http://localhost:5000/menu/addToCart',obj).then((res)=>{
+        //https://lb-server.herokuapp.com/
+        axios.post('https://lb-server.herokuapp.com/menu/addToCart',obj).then((res)=>{
             let inputs = document.getElementsByTagName('input')
             for(let input of inputs){
                 input.value = ''
@@ -29,7 +30,8 @@ const MenuItem = ({key, url, name,description, price,item_id})=>{
         }).catch(err=>console.error(err))
 
         //Food Popularity
-        axios.put(`http://localhost:5000/menu-item-popularity/${item_id}`).then(()=>{
+        //https://lb-server.herokuapp.com/
+        axios.put(`https://lb-server.herokuapp.com/menu-item-popularity/${item_id}`).then(()=>{
 
         }).catch(err=>console.error(err))
         

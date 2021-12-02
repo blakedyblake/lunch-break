@@ -19,8 +19,9 @@ const LogIn = ()=>{
     
     const handleSubmit = ()=>{
         console.log(context, 'Context before axios')
-        axios.post(`http://localhost:5000/login/${username}`,{password}).then(  (res)=>{
-        
+        //https://lb-server.herokuapp.com/
+        axios.post(`https://lb-server.herokuapp.com/login/${username}`,{password}).then(  (res)=>{
+            console.log(res.status)
             let _200 = (res.status===200)
             
             setLogError(_200? 'Success':'Wrong username/password');

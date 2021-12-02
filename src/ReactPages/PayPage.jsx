@@ -28,7 +28,8 @@ const PayPage = ()=>{
 
     const [changed, setChanged] = useState(0)
     useEffect(()=>{
-        axios.get(`http://localhost:5000/cart/getCart/${user_id}`).then(res=>{
+        //https://lb-server.herokuapp.com/
+        axios.get(`https://lb-server.herokuapp.com/cart/getCart/${user_id}`).then(res=>{
             setCartArr(res.data)
             console.log(res.data)
         })
@@ -65,8 +66,10 @@ const PayPage = ()=>{
             alert(alertMessage)
         }
         else{
-            //Go to the server and make the changes
-            axios.post('http://localhost:5000/pay', obj).then((res)=>{
+            //Go to the server and make the changes 
+            
+            //https://lb-server.herokuapp.com/
+            axios.post('https://lb-server.herokuapp.com/pay', obj).then((res)=>{
                 //Upon success the user goes to a simple success page
                 window.location.href = `http://localhost:3000/#/success/${username}`
     

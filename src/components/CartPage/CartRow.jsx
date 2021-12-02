@@ -13,7 +13,8 @@ const CartRow = ({data, fn})=>{
 
     const removeFromCart = ()=>{
         console.log('Hello');
-        axios.delete(`http://localhost:5000/cart/${id}`).then((res)=>{
+        //Used to be http://localhost:5000
+         axios.delete(`https://lb-server.herokuapp.com/cart/${id}`).then((res)=>{
             alert(`Deleting all ${name}s from cart`)
             fn(Math.random())
         }).catch(err=>console.error(err))
@@ -32,7 +33,9 @@ const CartRow = ({data, fn})=>{
         
 
         //Axios call to edit the value
-        axios.put(`http://localhost:5000/cart/${id}/${currQuantity}`).then((res)=>{
+
+        //https://lb-server.herokuapp.com/
+        axios.put(`https://lb-server.herokuapp.com/cart/${id}/${currQuantity}`).then((res)=>{
    
             fn(Math.random())
             alert(`Changed Quantity of ${name} to ${currQuantity}`)

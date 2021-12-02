@@ -15,12 +15,12 @@ const MenuPage = ()=>{
 
     //Gets menu data from the restaurant id provided in the window.location.href parameter
     useEffect(()=>{
-        //API call for restaurant photo
-        axios.get(`http://localhost:5000/menu/restaurant/${restaurantId}`).then(res=>{
+        //API call for restaurant photo https://lb-server.herokuapp.com/
+        axios.get(`https://lb-server.herokuapp.com/menu/restaurant/${restaurantId}`).then(res=>{
             SetRestaurantData(res.data)
         }).catch(err=>{console.error(err)})
-        //API call for menue items
-        axios.get(`http://localhost:5000/menu/getItems/${restaurantId}`).then(res=>{
+        //API call for menue items https://lb-server.herokuapp.com/
+        axios.get(`https://lb-server.herokuapp.com/menu/getItems/${restaurantId}`).then(res=>{
             SetMenuData(res.data)
         }).catch(err=>{console.error(err)})
     },[])

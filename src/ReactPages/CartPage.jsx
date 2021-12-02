@@ -16,7 +16,8 @@ const CartPage = ()=>{
 
     useEffect(()=>{
         console.log('useEffect')
-        axios.get(`http://localhost:5000/cart/getCart/${context.user_id}`).then(res=>{
+        //https://lb-server.herokuapp.com/
+        axios.get(`https://lb-server.herokuapp.com/cart/getCart/${context.user_id}`).then(res=>{
             console.log(res.data)
             setCartData(res.data)
             console.log(res.data)

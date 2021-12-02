@@ -22,12 +22,13 @@ const MainPage = ()=>{
     //Universal and filtered, both are sorted by popularity
     useEffect(()=>{
         console.log('trigger:', type);
-        axios.get('http://localhost:5000/restaurants/global').then((res)=>{
+        //https://lb-server.herokuapp.com/
+        axios.get('https://lb-server.herokuapp.com/restaurants/global').then((res)=>{
             setArrGP(res.data)
         })
         if(type==='None') return
-        
-        axios.get(`http://localhost:5000/restaurant-type/${type}`).then(res=>{
+        //https://lb-server.herokuapp.com/
+        axios.get(`https://lb-server.herokuapp.com/restaurant-type/${type}`).then(res=>{
             console.log(res.data)    
             setArr1(res.data)
 

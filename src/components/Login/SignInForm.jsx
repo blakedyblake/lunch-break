@@ -57,7 +57,8 @@ const SignIn = ()=>{
         }
     
         if(userErr===''&&passErr===''&&confirmErr===''){
-            axios.post('http://localhost:5000/login/newuser',{
+            //https://lb-server.herokuapp.com/
+            axios.post('https://lb-server.herokuapp.com/login/newuser',{
                 username, password,
             }).then((res)=>{
                 setAxiosErr('Success! Now log in using your creditials')

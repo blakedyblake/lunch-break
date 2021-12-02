@@ -10,8 +10,8 @@ const RestaurantIcon = ({image, title,res_id})=>{
     const toRestaurantPage = async()=>{
 
         setRestId(res_id)
-        
-        await axios.put(`http://localhost:5000/restaurant-popularity/${res_id}`).then((res)=>{}).catch((err)=>{
+        //https://lb-server.herokuapp.com/
+        await axios.put(`https://lb-server.herokuapp.com/restaurant-popularity/${res_id}`).then((res)=>{}).catch((err)=>{
             console.error(err)
         })
         window.location.href = `http://localhost:3000/#/menu/${username}/${res_id}/${title}/`
