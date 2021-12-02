@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import BackButton from "../components/BackButton";
 import { GlobalContext } from "../Context/IdProvider";
 
